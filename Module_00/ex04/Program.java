@@ -10,7 +10,7 @@ class Program {
     static public void sortByFrequency(char[] asAchar,int[] aboveZero,int counter)
     {
         int saverInt = 0;
-        char saverChar;
+        char saverChar = '';
         for (int i = 0;i < counter - 1;i++)
         {
             for (int j = 1;j < counter;j++)
