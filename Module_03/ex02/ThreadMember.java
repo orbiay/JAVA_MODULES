@@ -12,7 +12,6 @@ class ThreadMember extends Thread {
     }
     public void defineYourSelf()
     {
-        // Thread 1: from 0 to 4 sum is 5
         System.out.println("Thread "+ threadNumber + ": from " + start + " to  "+ (start + assignedSize ) + " sum is " + localSum);
     }
     public void run()
@@ -24,7 +23,6 @@ class ThreadMember extends Thread {
             {
                 Main.sum += Main.output[start + i];
                 localSum += Main.output[start + i];
-                // System.out.println("output the " + (start + i) +" is " + Main.output[i] + " sum is " + Main.sum);
                 i++;
             }
         }
