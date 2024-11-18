@@ -24,22 +24,12 @@ class Program {
                     asAchar[i] = asAchar[j];
                     asAchar[j] = saverChar;
                 }
-                // else if (aboveZero[i] == aboveZero[j] && (int) asAchar[i] > (int) asAchar[j])
-                // {
-                //     saverInt = aboveZero[i];
-                //     aboveZero[i] = aboveZero[j];
-                //     aboveZero[j] = saverInt;
-                //     saverChar = asAchar[i];
-                //     asAchar[i] = asAchar[j];
-                //     asAchar[j] = saverChar;
-                // }
             }
         }
     }
     static public void printingChart(char[] asAchar,int[] aboveZero,int counter)
     {
-        // int rows = counter;
-        // int columns = 0;
+
         int maxFrequency = aboveZero[0];
         int chartScailling  = 1;
         int[] isItPrinted = new int[counter];
@@ -47,19 +37,27 @@ class Program {
             isItPrinted[i] = -1;
         if (maxFrequency / 10 > 0)
             chartScailling = maxFrequency / 10;
+        for (int i = 0; i < counter ; i++)
+        {
+            if (aboveZero[i] >= 10 )
+            {
+                System.out.print("  "+ aboveZero[i] +"  ");
+                isItPrinted[i] = 1;
+            }
+        }
+        System.out.println();
         for (int rows = 10 ; rows > 0 ; rows--)
         {
             for (int i = 0; i < counter; i++)
             {
-                if (aboveZero[i] / chartScailling == rows -1 && isItPrinted[i] == -1)
+                if ((aboveZero[i] / chartScailling == rows -1 )&& isItPrinted[i] == -1)
                 {
                     System.out.print("  "+ aboveZero[i] +"  ");
                     isItPrinted[i] = 1;
                 }
-                if (aboveZero[i] / chartScailling >= rows)
+                else if (aboveZero[i] / chartScailling >= rows)
                     System.out.print("  #  ");
-                // if (rows - 1 == 0)
-                //     System.out.print(asAchar[i]);
+
                 else
                     System.out.print("     ");
             }
@@ -74,7 +72,7 @@ class Program {
         Scanner scan = new Scanner(System.in);
         System.out.print(" -> :  ");
         String input = scan.nextLine();
-        System.out.println("\n\n\n\n\n\n" + input);
+        System.out.println("\n\n\n\n\n\n" + input + "\n\n\n\n\n");
         int frequency[] = new int[65536];
         countFrequency(input,frequency);
         // for (int i = 0; i < 100;i++ )
