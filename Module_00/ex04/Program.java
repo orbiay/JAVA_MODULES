@@ -1,11 +1,18 @@
 import java.util.Scanner;
 
 class Program {
-    static public void countFrequency(String input,int frequency[])
+    static public boolean countFrequency(String input,int frequency[])
     {
         char[] chars = input.toCharArray();
+        if (input.length() == 0 || (input.length() >= 2 && input.charAt(input.length() - 1) != '2' && input.charAt(input.length() - 2) != '4'))
+            return false;
         for(char chare : chars)
+        {
+            if(chare == '4' || chare == '2')
+                continue;
             frequency[chare]++;
+        }
+        return true;
     }
     static public void sortByFrequency(char[] asAchar,int[] aboveZero,int counter)
     {
@@ -27,40 +34,43 @@ class Program {
             }
         }
     }
+    static public int minLength(int[] aboveZero)
+    {
+        int i;
+        for (i = 0;i < 10;i++)
+        {
+            if (aboveZero[i] == 0)
+                break;
+        }
+        return i;
+    }
     static public void printingChart(char[] asAchar,int[] aboveZero,int counter)
     {
 
         int maxFrequency = aboveZero[0];
-        int chartScailling  = 1;
-        int[] isItPrinted = new int[counter];
-        for (int i = 0;i < counter;i++)
-            isItPrinted[i] = -1;
-        if (maxFrequency / 10 > 0)
-            chartScailling = maxFrequency / 10;
-        for (int i = 0; i < counter ; i++)
+        int minLength = minLength(aboveZero);
+        int[] chart = new int[minLength];
+        for (int i = 0;i < minLength;i++)
         {
-            if (aboveZero[i] >= 10 )
+            if (maxFrequency > 10)
             {
-                System.out.print("  "+ aboveZero[i] +"  ");
-                isItPrinted[i] = 1;
+                int value = (aboveZero[i] * 10) / maxFrequency;
+                chart[i] = value;
             }
+            else
+                chart[i] = aboveZero[i];
         }
-        System.out.println();
-        for (int rows = 10 ; rows > 0 ; rows--)
+        int rows = chart[0];
+        while(rows >= 0)
         {
-            for (int i = 0; i < counter; i++)
+            for (int i = 0 ; i < minLength;i++)
             {
-                if ((aboveZero[i] / chartScailling == rows -1 )&& isItPrinted[i] == -1)
-                {
-                    System.out.print("  "+ aboveZero[i] +"  ");
-                    isItPrinted[i] = 1;
-                }
-                else if (aboveZero[i] / chartScailling >= rows)
-                    System.out.print("  #  ");
-
-                else
-                    System.out.print("     ");
+                if (chart[i] == rows)
+                    System.out.print("  " + aboveZero[i] + "  ");
+                else if (chart[i] > rows)
+                    System.out.print("  " + "#" + "  ");
             }
+            rows--;
             System.out.println();
         }
         for (int i = 0;i < counter;i++)
@@ -74,7 +84,11 @@ class Program {
         String input = scan.nextLine();
         System.out.println("\n\n\n\n\n\n" + input + "\n\n\n\n\n");
         int frequency[] = new int[65536];
-        countFrequency(input,frequency);
+        if (!countFrequency(input,frequency))
+        {
+            System.out.println("Error :Fix Your input");
+            return;
+        }
         // for (int i = 0; i < 100;i++ )
         //     System.out.println(frequency[i]);
         char[] asAchar = new char[65536];
