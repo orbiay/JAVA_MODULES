@@ -14,6 +14,8 @@ class Program {
         sum += number / 10;
         number = number % 10;
         sum += number;
-        System.out.print(sum + " " + number);
+        System.out.print(sum );
+        System.out.print(" ");
+        System.out.print(number);
     }
 }
