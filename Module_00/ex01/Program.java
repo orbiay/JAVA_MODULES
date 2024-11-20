@@ -17,12 +17,14 @@ class Program {
             {
                 if (number % i == 0)
                 {
-                    System.out.println("false " + op);
+                    System.out.print("false ");
+                    System.out.println(op);
                     System.exit(0);
                 }
                 op++;
             }
-            System.out.print("true " + op);
+            System.out.print("true ");
+            System.out.println(op);
         }
     }
     
