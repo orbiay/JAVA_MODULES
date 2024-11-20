@@ -50,7 +50,9 @@ class Program {
     }
     static public void theChart(int numOfEquals)
     {
-        System.out.print("  week " + startweek + "  ");
+        System.out.print("  week ");
+        print(startweek);
+        print("  ");
         while(numOfEquals > 0)
         {
             System.out.print("=");
