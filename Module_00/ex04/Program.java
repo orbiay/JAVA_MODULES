@@ -4,7 +4,7 @@ class Program {
     static public boolean countFrequency(String input,int frequency[])
     {
         char[] chars = input.toCharArray();
-        if (input.length() == 0 || (input.length() >= 2 && input.charAt(input.length() - 1) != '2' && input.charAt(input.length() - 2) != '4'))
+        if (input.length() == 0 )
             return false;
         for(char chare : chars)
         {
@@ -18,12 +18,22 @@ class Program {
     {
         int saverInt = 0;
         char saverChar;
-        for (int i = 0;i < counter - 1;i++)
+        for (int i = 0;i < counter ;i++)
         {
-            for (int j = 1;j < counter;j++)
+            for (int j = i + 1;j < counter;j++)
             {
                 if (aboveZero[i] < aboveZero[j])
                 {
+                    saverInt = aboveZero[i];
+                    aboveZero[i] = aboveZero[j];
+                    aboveZero[j] = saverInt;
+                    saverChar = asAchar[i];
+                    asAchar[i] = asAchar[j];
+                    asAchar[j] = saverChar;
+                }
+                if (aboveZero[i] == aboveZero[j]  && (int)asAchar[i] > (int)asAchar[j])
+                {
+
                     saverInt = aboveZero[i];
                     aboveZero[i] = aboveZero[j];
                     aboveZero[j] = saverInt;
@@ -48,7 +58,7 @@ class Program {
     {
 
         int maxFrequency = aboveZero[0];
-        int minLength = minLength(aboveZero);
+        int minLength = counter;
         int[] chart = new int[minLength];
         for (int i = 0;i < minLength;i++)
         {
@@ -65,16 +75,27 @@ class Program {
         {
             for (int i = 0 ; i < minLength;i++)
             {
-                if (chart[i] == rows)
-                    System.out.print("  " + aboveZero[i] + "  ");
-                else if (chart[i] > rows)
-                    System.out.print("  " + "#" + "  ");
+                if (chart[i] > rows)
+                    System.out.print("   #   ");
+                else if (chart[i] == rows)
+                {
+                    System.out.print("   " );
+                    System.out.print(aboveZero[i]);
+                    System.out.print("   ");
+                }
+                else
+                    System.out.print("   ");
+               
             }
             rows--;
             System.out.println();
         }
         for (int i = 0;i < counter;i++)
-            System.out.print("  " + asAchar[i] + "  ");
+        {
+            System.out.print("   " );
+            System.out.print(asAchar[i]);
+            System.out.print("   ");
+        }
 
     }
     static public void main(String args[])
@@ -82,15 +103,12 @@ class Program {
         Scanner scan = new Scanner(System.in);
         System.out.print(" -> :  ");
         String input = scan.nextLine();
-        System.out.println("\n\n\n\n\n\n" + input + "\n\n\n\n\n");
         int frequency[] = new int[65536];
         if (!countFrequency(input,frequency))
         {
             System.out.println("Error :Fix Your input");
             return;
         }
-        // for (int i = 0; i < 100;i++ )
-        //     System.out.println(frequency[i]);
         char[] asAchar = new char[65536];
         int[] aboveZero = new int[65536];
         int counter = 0;
@@ -100,15 +118,12 @@ class Program {
             {
                 asAchar[counter] = (char) i;
                 aboveZero[counter] = frequency[i];
-                // System.out.println(asAchar[i]);
                 counter++;
             }
         }
         sortByFrequency(asAchar,aboveZero,counter);
-        // for (int i = 0;i < counter;i++)
-        // {
-        //     System.out.println(asAchar[i] + " " + aboveZero[i]);
-        // }
+        if(counter > 10)
+            counter = 10;
         printingChart(asAchar,aboveZero,counter);
 
     }
