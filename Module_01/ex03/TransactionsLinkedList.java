@@ -7,7 +7,6 @@ class TransactionsLinkedList implements TransactionList{
         size = 0;
     }
 
-    @Override
     public Transaction addTransaction(Transaction transaction){
         // Whenever want to add an element to your linked list the head become the new tranaction that u wanna add and the nex is the previous head
         tranaction.setNextTransaction(head);
@@ -17,7 +16,6 @@ class TransactionsLinkedList implements TransactionList{
         return head;
     }
 
-    @Override
     public void deleteTransactionById(UUID id){
         Transaction previous = null;
         Transaction cuurent = head;
@@ -41,7 +39,6 @@ class TransactionsLinkedList implements TransactionList{
         throw new TransactionNotFoundException("Transaction with this Id" + id+ " no Found");
     }
 
-    @Override
     public Transaction[] toArray(){
         int newSize = INITIALE_SIZE;
         if (size > INITIALE_SIZE)
