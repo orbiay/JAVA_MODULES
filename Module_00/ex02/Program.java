@@ -37,6 +37,7 @@ class Program {
             if (isPrime((int) sumOfSet(number)))
                 counter += 1;
         }
-        System.out.println("Count of coffee-request : " + counter);
+        System.out.print("Count of coffee-request : ");
+        System.out.println(counter);
     }
 }
