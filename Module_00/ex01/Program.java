@@ -12,7 +12,6 @@ class Program {
         else
         {
             int op = 1;
-            System.out.println(number);
             for (int i = 2; i * i <= number ; i++)
             {
                 if (number % i == 0)
@@ -29,3 +28,6 @@ class Program {
     }
     
 }
+/*When determining whether a number is prime, you only need to check for divisors up to its square root, because if a number nn has a divisor larger than nn
+​, then it must also have a corresponding divisor smaller than |/n
+ */
