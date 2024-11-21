@@ -2,9 +2,9 @@ import java.util.Scanner;
 
 class Program {
     static int startweek = 0;
-    static public int powOfTeen(int times)
+    static public long powOfTeen(int times)
     {
-        int power = 1;
+        long power = 1;
         for (int i = 0;i < times;i++)
         {
             power *= 10;
@@ -23,20 +23,21 @@ class Program {
             startweek = number;
             numOfWeeks = number;
         }
-        if (!line.equals("week") || numOfWeeks != number || number > 18 || number < 1)
+        if (!line.equals("Week") || numOfWeeks != number || number > 18 || number < 1)
         {
             System.err.print("llegalArgument");
             System.exit(-1);
         }
         return numOfWeeks;
     }
-    static public int secondLineHandler(Scanner scan,int minims)
+    static public long secondLineHandler(Scanner scan,long minims)
     {
+        System.out.print("--> ");
         int saver = scan.nextInt();
         int min = saver;
         for (int i = 0; i < 4; i++) {
             saver = scan.nextInt();
-            if (saver > 9)
+            if (saver > 9 || saver < 1 || min > 9 || min < 1)
             {
                 System.err.print("llegalArgument");
                 System.exit(-1);
@@ -50,9 +51,9 @@ class Program {
     }
     static public void theChart(int numOfEquals)
     {
-        System.out.print("  week ");
-        print(startweek);
-        print("  ");
+        System.out.print("  Week ");
+        System.out.print(startweek);
+        System.out.print("  ");
         while(numOfEquals > 0)
         {
             System.out.print("=");
@@ -61,24 +62,24 @@ class Program {
         System.out.println(">");
         startweek++;
     }
-    static public void printTheChart(int count,int minims)
+    static public void printTheChart(int count,long minims)
     {
-        int number = powOfTeen(count);
+        long number = powOfTeen(count);
         int saver = 0;
-
-        while (number > 0)
+        while (number > 0 )
         {
-            saver = minims / number;
+            saver =(int) (minims / number);
             minims -= saver * number;
             number /= 10;
             theChart(saver);
+            count--;
         }
     }
     static public void main(String args[])
     {
         Scanner scan = new Scanner(System.in);
         int numOfWeeks = 0;
-        int minims = 0 ;
+        long minims = 0 ;
         int inCase = 0;
         int count = -1;
         while (true)
