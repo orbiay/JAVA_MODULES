@@ -1,7 +1,7 @@
 class Program {
     public static void main(String arg[])
     {
-        int number = 479598;
+        int number = 479599;
         int sum = 0;
         sum += number / 100000;
         number = number % 100000;
@@ -14,8 +14,6 @@ class Program {
         sum += number / 10;
         number = number % 10;
         sum += number;
-        System.out.print(sum );
-        System.out.print(" ");
-        System.out.print(number);
+        System.out.print(sum);
     }
 }
