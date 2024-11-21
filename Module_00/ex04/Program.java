@@ -7,11 +7,7 @@ class Program {
         if (input.length() == 0 )
             return false;
         for(char chare : chars)
-        {
-            if(chare == '4' || chare == '2')
-                continue;
             frequency[chare]++;
-        }
         return true;
     }
     static public void sortByFrequency(char[] asAchar,int[] aboveZero,int counter)
@@ -106,7 +102,7 @@ class Program {
         int frequency[] = new int[65536];
         if (!countFrequency(input,frequency))
         {
-            System.out.println("Error :Fix Your input");
+            System.err.println("Error :Fix Your input");
             return;
         }
         char[] asAchar = new char[65536];
@@ -128,3 +124,5 @@ class Program {
 
     }
 }
+//प्रोग्रामिंगकीदुनियामेंआपकास्वागतहै!प्रोग्रामिंगमजेदारऔररोमांचकहै।
+//مرحبًابكمفيعالمالبرمجة!البرمجةممتعةومثيرة 
