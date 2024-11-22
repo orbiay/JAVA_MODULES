@@ -3,7 +3,6 @@ class Program {
     {
         UsersArrayList userList = new UsersArrayList();
         
-        // Adding users
         userList.addUser(new User("A", 500));
         userList.addUser(new User("B", 300));
         userList.addUser(new User("C", 500));
@@ -21,15 +20,15 @@ class Program {
         userList.addUser(new User("P", 500));
         userList.addUser(new User("O", 300));
         
-        // Retrieve and print user
         try {
-            System.out.println(userList.getUserById(1).getName()); // Should print Alice's details
-            System.out.println(userList.getUserById(16).getName()); // Should throw UserNotFoundException
+            System.out.println(userList.getUserById(1).getName());
+            System.out.println(userList.getUserById(15).getName());
+            System.out.println(userList.getUserById(-1).getName());
+            System.out.println(userList.getUserById(16).getName());
         } catch (UserNotFoundException e) {
             System.out.println(e.getMessage());
         }
         
-        // Print size of user list
         System.out.println("Total users: " + userList.getNumberOfUsers());
     }
 }

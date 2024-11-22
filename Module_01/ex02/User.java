@@ -1,14 +1,13 @@
 class User {
     private int Identifier;
-    String Name;
-    int Balance;
+    private String Name;
+    private int Balance;
     
     public User(String Name,int Balance)
     {
         this.Identifier = UserIdsGenerator.getInstance().generateId();
         this.Name = Name;
         setBalance(Balance);
-        // System.out.println("Balance is "  +  this.Balance + " Name is " + this.Name);
         System.out.println("Parmeterized Constructor of User Class Called.");
     }
     public int getId() {
@@ -18,13 +17,21 @@ class User {
     public String getName() {
         return Name;
     }
-
+    public void setName(String name)
+    {
+        if (name == null) {
+            System.err.println("Error: unaccesptable arguments ");
+            System.exit(-1);
+        }
+        this.Name = name;
+    }
     public int getBalance() {
         return Balance;
     }
     public void setBalance(int balance) {
         if (balance < 0) {
-            System.out.println("Balance must be a positive amount.");
+            System.err.println("Balance must be a positive amount.");
+            System.exit(-1);
         }
         this.Balance = balance;
     }

@@ -14,16 +14,16 @@ class UsersArrayList implements UsersList
 
     private void resizingArrayOfUsers()
     {
-
         int newCapacity = users.length + (users.length / 2);
         System.out.println("Resizing methods called with curent length is " + users.length + " and new Capacity is " + newCapacity);
         User[] newArrayOfUsers = new User[newCapacity];
-        System.arraycopy(users,0,newArrayOfUsers,0,users.length);
+        for (int i = 0; i < users.length; i++) {
+            newArrayOfUsers[i] = users[i];
+        }        
         users = newArrayOfUsers;
         capacity = newCapacity;
     }
 
-    @Override
     public User addUser(User user){
         if (numberOfUsers == capacity)
             resizingArrayOfUsers();
@@ -32,27 +32,23 @@ class UsersArrayList implements UsersList
         return user;
     }
 
-    @Override
     public User getUserById(int id)
     {
         for (int i = 0;i < numberOfUsers;i++)
         {
-            System.out.println("===> " + users[i].getName()+ " id is  "+ id + " getId is "+ users[i].getId() +  " numberof users is "+ numberOfUsers);
             if (users[i].getId() == id)
                 return users[i];
         }
         throw new UserNotFoundException("User with this id " + id + " not found");
     }
-    @Override
     public int getNumberOfUsers()
     {
         return numberOfUsers;
     }
 
-    @Override
     public User getUserByIndex(int index)
     {
-        if (index <= numberOfUsers)
+        if (index <= numberOfUsers && index > -1)
             return users[index];
         throw new UserNotFoundException("User with this id " + index + " not found");
     }
