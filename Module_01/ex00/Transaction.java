@@ -13,11 +13,11 @@ public class Transaction {
     private int amount;
 
     public Transaction(User recipient, User sender, Category category, int amount) {
-        this.id = UUID.randomUUID().toString(); 
-        this.recipient = recipient;
-        this.sender = sender;
-        this.category = category;
-        setAmount(amount); 
+        this.id = UUID.randomUUID().toString(); // Generate a unique ID
+        setRecipient(recipient);
+        setSender(sender);
+        setCategory(category);
+        setAmount(amount);
     }
 
     public String getId() {
@@ -28,12 +28,38 @@ public class Transaction {
         return recipient;
     }
 
+    public void setRecipient(User recipient) {
+        if (recipient == null) {
+            System.err.println("Error: unaccesptable arguments (recipent)");
+            System.exit(-1);
+        }
+        this.recipient = recipient;
+    }
+
     public User getSender() {
         return sender;
     }
 
+    public void setSender(User sender) {
+        if (sender == null) 
+        {
+            System.err.println("Error: unaccesptable arguments (sender)");
+            System.exit(-1);
+        }
+        this.sender = sender;
+    }
+
     public Category getCategory() {
         return category;
+    }
+
+    public void setCategory(Category category) {
+        if (category == null) 
+        {
+            System.err.println("Error: unaccesptable arguments (Category)");
+            System.exit(-1);
+        }
+        this.category = category;
     }
 
     public int getAmount() {
@@ -41,17 +67,16 @@ public class Transaction {
     }
 
     public void setAmount(int amount) {
-        if (category == Category.DEBITS && amount >= 0) {
-            System.out.println("Debit must be a negative amount.");
-            System.exit(-1);
-        } else if (category == Category.CREDITS && amount <= 0) {
-            System.out.println("Credits must be a positive amount.");
+        if (category == Category.DEBITS && amount >= 0)
+        {
+            System.err.println("Error: unaccesptable arguments (Amount)");
             System.exit(-1);
         }
-        // if (category == Category.DEBITS)
-        //     this.amount = amount;
-        // else if (category == Category.CREDIT)
-            this.amount = amount;
+        else if (category == Category.CREDITS && amount <= 0) 
+        {
+            System.err.println("Error: unaccesptable arguments (Amount)");
+            System.exit(-1);
+        }
+        this.amount = amount;
     }
-
 }
