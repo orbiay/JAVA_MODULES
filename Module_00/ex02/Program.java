@@ -2,22 +2,17 @@ import java.util.Scanner;
 
 class Program {
     static public boolean isPrime(int number){
-        if (number <= 1)
-            System.err.println("IllegalArgument");
 
-        else
+        for (int i = 2; i * i <= number ; i++)
         {
-            for (int i = 2; i * i <= number ; i++)
-            {
-                if (number % i == 0)
-                    return false;
-            }
+            if (number % i == 0)
+                return false;
         }
         return true;
     }
-    static public double sumOfSet(double number)
+    static public long sumOfSet(long number)
     {
-        double sum = 0;
+        long sum = 0;
         
         while (number != 0) {
             sum += number % 10;
@@ -28,13 +23,15 @@ class Program {
     static public void main(String args[])
     {
         Scanner scan = new Scanner(System.in);
-        double number = 0;
+        long number = 0;
         int counter = 0;
         while (number != 42)
         {
             System.out.print("--> ");
-            number = scan.nextDouble();
-            if (isPrime((int) sumOfSet(number)))
+            number = scan.nextLong();
+            if (number <= 1)
+                System.err.println("IllegalArgument");
+            else if (isPrime((int) sumOfSet(number)))
                 counter += 1;
         }
         System.out.print("Count of coffee-request : ");
