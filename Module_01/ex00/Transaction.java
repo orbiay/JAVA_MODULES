@@ -6,7 +6,7 @@ public class Transaction {
         CREDITS
     }
 
-    private String id;
+    private UUID id;
     private User recipient;
     private User sender;
     private Category category;
