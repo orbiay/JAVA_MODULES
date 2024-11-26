@@ -1,6 +1,6 @@
 import java.util.UUID;
 
-interface TransactionList {
+interface TransactionsList {
     Transaction addTransaction(Transaction transaction);
     void deleteTransactionById(UUID id);
     Transaction[] toArray();

@@ -9,7 +9,6 @@ class User {
         this.Identifier = UserIdsGenerator.getInstance().generateId();
         this.Name = Name;
         setBalance(Balance);
-        // System.out.println("Balance is "  +  this.Balance + " Name is " + this.Name);
         listOfTransactions = new TransactionsLinkedList();
         System.out.println("Parmeterized Constructor of User Class Called.");
     }
@@ -40,6 +39,15 @@ class User {
     }
     public String getName() {
         return Name;
+    }
+
+    public void setName(String name)
+    {
+        if (name == null) {
+            System.err.println("Error: unaccesptable arguments ");
+            System.exit(-1);
+        }
+        this.Name = name;
     }
 
     public int getBalance() {

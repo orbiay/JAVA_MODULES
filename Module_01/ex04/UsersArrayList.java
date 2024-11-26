@@ -23,7 +23,6 @@ class UsersArrayList implements UsersList
         capacity = newCapacity;
     }
 
-    @Override
     public User addUser(User user){
         if (numberOfUsers == capacity)
             resizingArrayOfUsers();
@@ -32,24 +31,21 @@ class UsersArrayList implements UsersList
         return user;
     }
 
-    @Override
     public User getUserById(int id)
     {
         for (int i = 0;i < numberOfUsers;i++)
         {
-            System.out.println("===> " + users[i].getName()+ " id is  "+ id + " getId is "+ users[i].getId() +  " numberof users is "+ numberOfUsers);
             if (users[i].getId() == id)
                 return users[i];
         }
         throw new UserNotFoundException("User with this id " + id + " not found");
     }
-    @Override
+
     public int getNumberOfUsers()
     {
         return numberOfUsers;
     }
 
-    @Override
     public User getUserByIndex(int index)
     {
         if (index <= numberOfUsers)

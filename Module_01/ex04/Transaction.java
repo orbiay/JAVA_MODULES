@@ -7,14 +7,14 @@ public class Transaction {
     }
     private Transaction next;
 
-    private String id;
+    private UUID id;
     private User recipient;
     private User sender;
     private Category category;
     private int amount;
 
     public Transaction(User recipient, User sender, Category category, int amount) {
-        this.id = UUID.randomUUID().toString(); 
+        this.id = UUID.randomUUID(); 
         this.recipient = recipient;
         this.sender = sender;
         this.category = category;
@@ -22,11 +22,13 @@ public class Transaction {
         setAmount(amount); 
     }
 
-    public String getId() {
+    public UUID getId() 
+    {
         return id;
     }
 
-    public User getRecipient() {
+    public User getRecipient() 
+    {
         return recipient;
     }
 
@@ -34,22 +36,29 @@ public class Transaction {
         return sender;
     }
 
-    public Category getCategory() {
+    public Category getCategory() 
+    {
         return category;
     }
-
+    public void setCategory(Category category)
+    {
+        this.category = category;
+    }
     public int getAmount() {
         return amount;
     }
-    public Transaction getNextTransaction() {
+    public Transaction getNextTransaction() 
+    {
         return next;
     }
-    public void setNextTransaction(Transaction next) {
+    public void setNextTransaction(Transaction next) 
+    {
         this.next = next;
     }
 
 
-    public void setAmount(int amount) {
+    public void setAmount(int amount) 
+    {
         if (category == Category.DEBITS && amount >= 0) {
             System.out.println("Debit must be a negative amount.");
             System.exit(-1);

@@ -26,12 +26,5 @@ public class Program {
         {
             System.out.println(e.getMessage());
         }
-        // // Removing a transaction and catching exception if not found
-        // try {
-        //     user.getTransactions().removeTransaction(t1.getId());
-        //     System.out.println("Transaction removed.");
-        // } catch (TransactionNotFoundException e) {
-        //     System.out.println(e.getMessage());
-        // }
     }
 }
