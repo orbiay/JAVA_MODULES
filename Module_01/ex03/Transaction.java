@@ -7,14 +7,14 @@ public class Transaction {
     }
     private Transaction next;
 
-    private String id;
+    private UUID id;
     private User recipient;
     private User sender;
     private Category category;
     private int amount;
 
     public Transaction(User recipient, User sender, Category category, int amount) {
-        this.id = UUID.randomUUID().toString(); 
+        this.id = UUID.randomUUID(); 
         this.recipient = recipient;
         this.sender = sender;
         this.category = category;
@@ -22,7 +22,7 @@ public class Transaction {
         setAmount(amount); 
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 

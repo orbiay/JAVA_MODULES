@@ -1,4 +1,6 @@
-class TransactionsLinkedList implements TransactionList{
+import java.util.UUID;
+
+class TransactionsLinkedList implements TransactionsList{
     private Transaction head;
     private int size;
     private final int INITIALE_SIZE = 10;
@@ -9,36 +11,45 @@ class TransactionsLinkedList implements TransactionList{
 
     public Transaction addTransaction(Transaction transaction){
         // Whenever want to add an element to your linked list the head become the new tranaction that u wanna add and the nex is the previous head
-        tranaction.setNextTransaction(head);
+        transaction.setNextTransaction(head);
         // the head gonna poit to the new transaction by reference
-        head = tranaction;
+        head = transaction;
         size++;
         return head;
     }
-
+/*
+ * prev 
+ * 
+ */
     public void deleteTransactionById(UUID id){
         Transaction previous = null;
         Transaction cuurent = head;
         while (cuurent != null)
         {
-            if (cuurent.getId() == id && previousTransaction != null)
+            if (cuurent.getId() == id && previous != null)
             {
-                previousTransaction.setNextTransaction(cuurent.getNextTransaction());
+                
+                previous.setNextTransaction(cuurent.getNextTransaction());            
+                head = previous;
                 size--;
                 return ;
             }
-            else if (cuurent.getId() == id && previousTransaction == null)
+            else if (cuurent.getId() == id && previous == null)
             {
                 head = cuurent.getNextTransaction();
+                Transaction temp = head;
                 size--;
                 return ;
             }
             previous = cuurent;
             cuurent = cuurent.getNextTransaction();
         }
-        throw new TransactionNotFoundException("Transaction with this Id" + id+ " no Found");
+        throw new TransactionNotFoundException("Transaction with this Id" + id+ " not Found");
     }
-
+    public int getSize()
+    {
+        return size;
+    }
     public Transaction[] toArray(){
         int newSize = INITIALE_SIZE;
         if (size > INITIALE_SIZE)
@@ -50,7 +61,9 @@ class TransactionsLinkedList implements TransactionList{
         {
             linkedListToArray[i] = curent;
             curent = curent.getNextTransaction();
+            i++;
         }
+        curent = head;
         return linkedListToArray;
     }
 }

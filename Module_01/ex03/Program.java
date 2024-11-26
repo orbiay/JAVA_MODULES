@@ -12,26 +12,26 @@ public class Program {
             user1.setTransaction(transactionNum2);
             user2.setTransaction(transactionNum1);
             user2.setTransaction(transactionNum2);
-
-            // user.getTransactions().addTransaction(t1);
-            // user.getTransactions().addTransaction(t2);
-
             // Printing all transactions
-            int size = user1.getSize();
-            Transaction[] transactions = user1.getTransactions();
+            int size = user2.getSize();
+            Transaction[] transactions = user2.getTransactions();
+            System.out.println("--------->" + size);
             for (int i = 0;i < size ; i++) {
                 System.out.println(transactions[i].getId() + " " + transactions[i].getCategory());
             }
+            // delete TRansaction
+            user1.deleteTransactionById(transactionNum2.getId());
+            transactions = user1.getTransactions();
+            size = user1.getSize();
+            System.out.println("--------->" + size);
+            for (int i = 0;i < size ; i++) {
+                System.out.println(transactions[i].getId() + " " + transactions[i].getCategory());
+            }
+            // delete TRansaction With no-existing UUID
+            user1.deleteTransactionById(UUID.randomUUID());
         }catch(TransactionNotFoundException e)
         {
             System.out.println(e.getMessage());
         }
-        // // Removing a transaction and catching exception if not found
-        // try {
-        //     user.getTransactions().removeTransaction(t1.getId());
-        //     System.out.println("Transaction removed.");
-        // } catch (TransactionNotFoundException e) {
-        //     System.out.println(e.getMessage());
-        // }
     }
 }
