@@ -51,7 +51,19 @@ class Menu
             System.out.println("The transfer is completed");
         }
     }
-
+    public void getAllTransactionForUserService()
+    {
+        System.out.println("Enter a user ID");
+        System.out.print("-> ");
+        int userId = scan.nextInt();
+        User user = service.getUserById(userId);
+        Transaction[] transactions = user.getTransactions();
+        int size = user.getSize();
+        for(int i = 0;i<size;i++)
+        {
+            System.out.println("To " + user.getName() + "(id = "+ user.getId() + ") " + transaction[i].getAmount())
+        }
+    }
     public void entry()
     {
         int cmdNumber = 0;
@@ -63,9 +75,14 @@ class Menu
             {
                 case 1:
                     addUserService();
+                    break;
                 case 2:
                     getUserBalanceService();
+                    break;
                 case 3:
+                    performTransfer();
+                    break;
+                case 4:
 
             }
             System.out.println("---------------------------------------------------------");

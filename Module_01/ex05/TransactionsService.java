@@ -38,7 +38,10 @@ class TransactionsService {
         User user = users.getUserById(id);
         return user.getTransactions();
    }
-
+   public int getSizeTransactionsForUser(int id)
+   {
+        return users.getUserById(id).getSize();
+   }
    public void  removeTransactionById(int userId, UUID transactionId)
    {
         User user = users.getUserById(id);
