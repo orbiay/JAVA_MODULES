@@ -75,6 +75,7 @@ class Menu
         UUID idFormat = UUID.fromString(transactionId);
         User user = service.getUserById(userId);
         Transaction[] transactions = user.getTransactions();
+        System.out.println("------>" + idFormat.toString());
         int size = user.getSize();
         Transaction save = null;
         for (int i = 0;i < size;i++)
@@ -90,6 +91,7 @@ class Menu
             System.out.println("No Transation with this Id found");
             return;
         }
+        System.out.println("******"+ save.getId());
         service.removeTransactionById(userId,idFormat);
         System.out.println("Transfer To " + save.getRecipient().getName() + "(id = " + save.getRecipient().getId() + " ) " + save.getAmount() +" removed");
         
