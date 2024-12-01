@@ -21,27 +21,30 @@ class TransactionsLinkedList implements TransactionsList{
     public void deleteTransactionById(UUID id){
         Transaction previous = null;
         Transaction cuurent = head;
+        boolean isfound = false;
         while (cuurent != null)
         {
-            if (cuurent.getId() == id && previous != null)
+            if (cuurent.getId().equals(id) && previous != null)
             {
                 
                 previous.setNextTransaction(cuurent.getNextTransaction());            
                 head = previous;
                 size--;
+                isfound = true; 
                 return ;
             }
-            else if (cuurent.getId() == id && previous == null)
+            else if (cuurent.getId().equals(id) && previous == null)
             {
                 head = cuurent.getNextTransaction();
-                Transaction temp = head;
                 size--;
+                isfound = true;
                 return ;
             }
             previous = cuurent;
             cuurent = cuurent.getNextTransaction();
         }
-        throw new TransactionNotFoundException("Transaction with this Id" + id+ " not Found");
+        if (!isfound)
+            throw new TransactionNotFoundException("Transaction with this Id" + id+ " not Found");
     }
     public int getSize()
     {
