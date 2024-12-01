@@ -13,14 +13,14 @@ public class Transaction {
     private int amount;
 
     public Transaction(User recipient, User sender, Category category, int amount) {
-        this.id = UUID.randomUUID().toString(); // Generate a unique ID
+        this.id = UUID.randomUUID();
         setRecipient(recipient);
         setSender(sender);
         setCategory(category);
         setAmount(amount);
     }
 
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
