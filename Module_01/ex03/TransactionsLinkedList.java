@@ -17,10 +17,7 @@ class TransactionsLinkedList implements TransactionsList{
         size++;
         return head;
     }
-/*
- * prev 
- * 
- */
+
     public void deleteTransactionById(UUID id){
         Transaction previous = null;
         Transaction cuurent = head;
