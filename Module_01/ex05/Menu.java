@@ -58,11 +58,12 @@ class Menu
         System.out.print("-> ");
         int userId = scan.nextInt();
         User user = service.getUserById(userId);
-        Transaction[] transactions = user.getTransactions();
         int size = user.getSize();
         System.out.println("------> " + size);
+        Transaction[] transactions = user.getTransactions();
+        // int size = user.getSize();
         for(int i = 0;i<size;i++)
-            System.out.println("To " + user.getName() + "(id = "+ user.getId() + ") " + transactions[i].getAmount() + " with id = " + transactions[i].getId());
+            System.out.println("To " + transactions[i].getRecipient().getName() + "(id = "+ transactions[i].getRecipient().getId() + ") " + transactions[i].getAmount() + " with id = " + transactions[i].getId());
     }
 
     public void removeTransactionByIdService()
