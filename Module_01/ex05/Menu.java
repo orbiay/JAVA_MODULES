@@ -1,4 +1,5 @@
-import java.util.Scanner;
+import java.util.*;
+// import java.util.;
 class Menu
 {
     private TransactionsService service;
@@ -14,10 +15,10 @@ class Menu
     {
         System.out.println("-> Enter a user name and a balance");
         System.out.print("-> ");
-        String name = scanner.next();
-        int balance = scanner.nextInt();
+        String name = scan.next();
+        int balance = scan.nextInt();
         User user = new User(name,balance);
-        service.addUser(user);
+        service.addAuser(user);
         System.out.println("User with id ="+ user.getId() + "is added");
     }
 
@@ -25,13 +26,13 @@ class Menu
     {
         System.out.println("-> Enter a user ID");
         System.out.print("-> ");
-        int id = scanner.nextInt();
+        int id = scan.nextInt();
         if (id < 0)
             System.err.println("Error there is no User with this Id");
         else
         {
             User user = service.getUserById(id);
-            int balence  = user.getBalance();
+            int balance  = user.getBalance();
             System.out.println(user.getName() + " - " + balance);
         }
     }
@@ -40,10 +41,10 @@ class Menu
     {
         System.out.println("Enter a sender ID, a recipient ID, and a transfer amount");
         System.out.print("-> ");
-        int senderId = scanner.next();
-        int reciepentId = scanner.next();
-        int amount = scanner.next();
-        if (amount <= 0 || reciepentId < 0 || senderId < 0)
+        int senderId = scan.nextInt();
+        int reciepentId = scan.nextInt();
+        int amount = scan.nextInt();
+        if (reciepentId < 0 || senderId < 0)
             System.err.println("Error something Wrong with Your inputs");
         else
         {
@@ -59,11 +60,47 @@ class Menu
         User user = service.getUserById(userId);
         Transaction[] transactions = user.getTransactions();
         int size = user.getSize();
+        System.out.println("------> " + size);
         for(int i = 0;i<size;i++)
-        {
-            System.out.println("To " + user.getName() + "(id = "+ user.getId() + ") " + transaction[i].getAmount())
-        }
+            System.out.println("To " + user.getName() + "(id = "+ user.getId() + ") " + transactions[i].getAmount() + " with id = " + transactions[i].getId());
     }
+
+    public void removeTransactionByIdService()
+    {
+        System.out.println("Enter a user ID and a transfer ID");
+        System.out.print("-> ");
+        int userId = scan.nextInt();
+        String transactionId = scan.next();
+        UUID idFormat = UUID.fromString(transactionId);
+        User user = service.getUserById(userId);
+        Transaction[] transactions = user.getTransactions();
+        int size = user.getSize();
+        Transaction save = null;
+        for (int i = 0;i < size;i++)
+        {
+            if (transactions[i].getId().equals(idFormat))
+            {
+                save = transactions[i];
+                break;
+            }
+        }
+        if (save == null)
+        {
+            System.out.println("No Transation with this Id found");
+            return;
+        }
+        service.removeTransactionById(userId,idFormat);
+        System.out.println("Transfer To " + save.getRecipient().getName() + "(id = " + save.getRecipient().getId() + " ) " + save.getAmount() +" removed");
+        
+    }
+
+    public void checKValidityOfTransactionService()
+    {
+        System.out.println("Check results:");
+        // System.out.print("-> ");
+        // int userId = scan.next();
+    }
+
     public void entry()
     {
         int cmdNumber = 0;
@@ -83,6 +120,19 @@ class Menu
                     performTransfer();
                     break;
                 case 4:
+                    getAllTransactionForUserService();
+                    break;
+                case 5:
+                    removeTransactionByIdService();
+                    break;
+                case 6:
+                    checKValidityOfTransactionService();
+                    break;
+                case 7:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Enter one of those numbers that are mention");
 
             }
             System.out.println("---------------------------------------------------------");
