@@ -26,7 +26,7 @@ class TransactionsService {
    {
         User sender = users.getUserById(senderr);
         User recipent = users.getUserById(recipentt);
-        if (retrieveUserBalance(senderr) < amount)
+        if (retrieveUserBalance(senderr) < amount * (-1))
             throw new IllegalTransactionException("Sender Balance samller than his transfered amount");
         //  IDs of both transactions must be equal
         Transaction transaction = new Transaction(recipent,sender,Transaction.Category.DEBITS,amount);
@@ -34,10 +34,10 @@ class TransactionsService {
         sender.setTransaction(transaction);
         // change the transaxtion category for the reciepent
         transaction.setCategory(Transaction.Category.CREDITS);
-        sender.setTransaction(transaction);
+        recipent.setTransaction(transaction);
 
-        sender.creditTransfer(amount);
-        recipent.debitTransfer(amount);
+        sender.creditTransfer(amount * (-1));
+        recipent.debitTransfer(amount * (-1));
    }
 
    public Transaction[] getTransfersForUserById(int id)
