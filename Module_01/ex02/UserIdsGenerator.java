@@ -2,7 +2,7 @@ class UserIdsGenerator{
     private static UserIdsGenerator UserIdsGeneratorInsatnce;
     private static int id;
     private UserIdsGenerator(){
-        id = -1;
+        id = 0;
         System.out.println("UserIdsGenerator: Default Constructor called privately");
     }
     public static UserIdsGenerator getInstance(){
