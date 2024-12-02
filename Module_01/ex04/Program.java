@@ -34,6 +34,8 @@ public class Program {
             userATransactions = service.getTransfersForUserById(1);
             System.out.println("After Remove Transaction for User A");
             display(userATransactions,2);
+            System.out.println("Checking validity");
+            display(service.checKValidityOfTransaction(),1);
         }catch(Exception e)
         {
             System.out.println(e.getMessage());
