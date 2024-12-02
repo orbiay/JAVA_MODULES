@@ -3,7 +3,7 @@ import java.util.UUID;
 class TransactionsLinkedList implements TransactionsList{
     private Transaction head;
     private int size;
-    private final int INITIALE_SIZE = 10;
+    static private int INITIALE_SIZE = 10;
     TransactionsLinkedList(){
         head = null;
         size = 0;
@@ -34,7 +34,6 @@ class TransactionsLinkedList implements TransactionsList{
             else if (cuurent.getId() == id && previous == null)
             {
                 head = cuurent.getNextTransaction();
-                Transaction temp = head;
                 size--;
                 return ;
             }
@@ -49,8 +48,11 @@ class TransactionsLinkedList implements TransactionsList{
     }
     public Transaction[] toArray(){
         int newSize = INITIALE_SIZE;
-        if (size > INITIALE_SIZE)
+        if (size >= INITIALE_SIZE)
+        {   
             newSize = INITIALE_SIZE + INITIALE_SIZE / 2;
+            INITIALE_SIZE += INITIALE_SIZE / 2;
+        }
         Transaction[] linkedListToArray = new Transaction[newSize];
         Transaction curent = head;
         int  i = 0;
