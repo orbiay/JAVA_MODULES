@@ -1,9 +1,25 @@
 import java.util.UUID;
 class TransactionsService {
+    private static Transaction[] transactions;
+    private final int INITIALE_SIZE = 10;
+    static private int size;
     private UsersList users;
-    public TransactionsService()
-    {
+    private static int capacity;
+    TransactionsService(){
         users = new UsersArrayList();
+        if(transactions == null)
+        {
+            transactions = new Transaction[INITIALE_SIZE];
+            capacity = INITIALE_SIZE;
+        }
+        else if (size >= INITIALE_SIZE)
+        {
+            Transaction[] saver = new Transaction[transactions.length + transactions.length / 2];
+            capacity = transactions.length + transactions.length / 2;
+            for (int i = 0; i < size;i++)
+                saver[i] = transactions[i];
+            transactions = saver;
+        }
     }
     public void addAuser(User user)
     {
@@ -52,12 +68,54 @@ class TransactionsService {
    public void  removeTransactionById(int userId, UUID transactionId)
    {
         User user = users.getUserById(userId);
+        Transaction[] tran = user.getTransactions();
+        int len = user.getSize();
+        Transaction lookingFor = null;
+        for (int i = 0; i < len;i++)
+        {
+            if (tran[i].getId().equals(transactionId))
+            {
+                lookingFor = tran[i];
+                break;
+            }
+        }
         user.deleteTransactionById(transactionId);
+        boolean found = false;
+        if (size == 0 && lookingFor != null)
+        {
+            transactions[size] = lookingFor;
+            size++;
+        }
+        else if (lookingFor != null )
+        {
+            for (int i = 0;i < size;i++)
+            {
+                if (transactions[i].getId().equals(lookingFor.getId()))
+                    found = true;
+                    break;
+            }
+            if (found)
+            {
+                Transaction[] newArray = new Transaction[capacity];
+                for (int i = 0; i < size;i++)
+                {
+                    if (!transactions[i].getId().equals(lookingFor.getId()))
+                        newArray[i] = transactions[i];
+                }
+                size--;
+                transactions = newArray;
+            }
+            else
+            {
+                transactions[size] = lookingFor;
+                size++;
+            }
+        }
    }
 
-//    public Transaction[] checKValidityOfTransaction()
-//    {
-    
-//    }
+   public Transaction[] checKValidityOfTransaction()
+   {
+        return transactions;
+   }
    
 }
