@@ -126,9 +126,19 @@ class Menu
                     getAllTransactionForUserService();
                     break;
                 case 5:
+                    if(isDevMode == false)
+                    {
+                        System.out.println("It's not Dev Mode");
+                        break;
+                    }
                     removeTransactionByIdService();
                     break;
                 case 6:
+                    if(isDevMode == false)
+                    {
+                        System.out.println("It's not Dev Mode");
+                        break;
+                    }
                     checKValidityOfTransactionService();
                     break;
                 case 7:
