@@ -1,3 +1,4 @@
+import java.util.UUID;
 class User {
     private int Identifier;
     String Name;
