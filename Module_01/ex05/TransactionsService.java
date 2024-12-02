@@ -25,7 +25,6 @@ class TransactionsService {
     {
         if (user != null)
             users.addUser(user);
-        // System.out.println("User name is" + user.getName());
         else
             throw new UserNotFoundException("There is no user");
     }

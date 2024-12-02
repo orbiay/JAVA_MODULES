@@ -19,7 +19,7 @@ class Menu
         int balance = scan.nextInt();
         User user = new User(name,balance);
         service.addAuser(user);
-        System.out.println("User with id ="+ user.getId() + "is added");
+        System.out.println("User with id ="+ user.getId() + " is added");
     }
 
     private void getUserBalanceService()
@@ -59,9 +59,7 @@ class Menu
         int userId = scan.nextInt();
         User user = service.getUserById(userId);
         int size = user.getSize();
-        System.out.println("------> " + size);
         Transaction[] transactions = user.getTransactions();
-        // int size = user.getSize();
         for(int i = 0;i<size;i++)
             System.out.println("To " + transactions[i].getRecipient().getName() + "(id = "+ transactions[i].getRecipient().getId() + ") " + transactions[i].getAmount() + " with id = " + transactions[i].getId());
     }
@@ -75,7 +73,6 @@ class Menu
         UUID idFormat = UUID.fromString(transactionId);
         User user = service.getUserById(userId);
         Transaction[] transactions = user.getTransactions();
-        System.out.println("------>" + idFormat.toString());
         int size = user.getSize();
         Transaction save = null;
         for (int i = 0;i < size;i++)
@@ -91,7 +88,6 @@ class Menu
             System.out.println("No Transation with this Id found");
             return;
         }
-        System.out.println("******"+ save.getId());
         service.removeTransactionById(userId,idFormat);
         System.out.println("Transfer To " + save.getRecipient().getName() + "(id = " + save.getRecipient().getId() + " ) " + save.getAmount() +" removed");
         
@@ -100,8 +96,13 @@ class Menu
     public void checKValidityOfTransactionService()
     {
         System.out.println("Check results:");
-        // System.out.print("-> ");
-        // int userId = scan.next();
+        Transaction[] transactions = service.checKValidityOfTransaction();
+        for (int i = 0 ; i < transactions.length;i++)
+        {
+            if(transactions[i] == null)
+                break;
+            System.out.println(transactions[i].getRecipient().getName() + "(id = " + transactions[i].getRecipient().getId() + " )" + " as an unacknowledged transfer id " + transactions[i].getId() + "  from " + transactions[i].getSender().getName() + "( id = " + transactions[i].getSender().getId() + " ) " + " for " + transactions[i].getAmount());
+        }
     }
 
     public void entry()

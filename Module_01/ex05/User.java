@@ -12,7 +12,6 @@ class User {
         this.Name = Name;
         setBalance(Balance);
         listOfTransactions = new TransactionsLinkedList();
-        System.out.println("Parmeterized Constructor of User Class Called.");
     }
 
     public int getSize()
