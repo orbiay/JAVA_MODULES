@@ -23,7 +23,7 @@ class TransactionsLinkedList implements TransactionsList{
         Transaction cuurent = head;
         while (cuurent != null)
         {
-            if (cuurent.getId() == id && previous != null)
+            if (cuurent.getId().equals(id) && previous != null)
             {
                 
                 previous.setNextTransaction(cuurent.getNextTransaction());            
@@ -31,10 +31,9 @@ class TransactionsLinkedList implements TransactionsList{
                 size--;
                 return ;
             }
-            else if (cuurent.getId() == id && previous == null)
+            else if (cuurent.getId().equals(id) && previous == null)
             {
                 head = cuurent.getNextTransaction();
-                Transaction temp = head;
                 size--;
                 return ;
             }
