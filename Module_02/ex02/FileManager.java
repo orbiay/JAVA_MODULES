@@ -1,10 +1,8 @@
-// -------------------> Warning
 import java.nio.file.*;
 import java.nio.file.Paths;
 import java.io.*;
 import java.nio.*;
 
-// -------------------> Warning
 
 class FileManager {
     private Path currentDirecory;
