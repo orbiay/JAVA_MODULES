@@ -10,23 +10,23 @@ class Program {
         String hexExtention = "";
         Map<String, String> map = new HashMap<>();
         try{
-        while((ch = fileInputStream.read()) != -1)
-        {
-            if (ch != ',' && extentionFlag == false)
-                fileExtention += (char)ch;
-            else if (ch == ',')
-                extentionFlag = true;
-            else if (extentionFlag == true && ch != 32 && (char)ch != ',' && (char)ch != '\n')
-                hexExtention += (char)ch;
-            else if ((char)ch == '\n')
+            while((ch = fileInputStream.read()) != -1)
             {
-                fileExtention = fileExtention + '\n';
-                map.put(fileExtention,hexExtention);
-                fileExtention = "";
-                hexExtention = "";
-                extentionFlag = false;
+                if (ch != ',' && extentionFlag == false)
+                    fileExtention += (char)ch;
+                else if (ch == ',')
+                    extentionFlag = true;
+                else if (extentionFlag == true && ch != 32 && (char)ch != ',' && (char)ch != '\n')
+                    hexExtention += (char)ch;
+                else if ((char)ch == '\n')
+                {
+                    fileExtention = fileExtention + '\n';
+                    map.put(fileExtention,hexExtention);
+                    fileExtention = "";
+                    hexExtention = "";
+                    extentionFlag = false;
+                }
             }
-        }
         }catch(Exception e)
         {
             System.out.println(e.getMessage());
@@ -44,7 +44,10 @@ class Program {
             if (bytes != -1 && inputFile.available() > 0)
             {
                 for (byte singleByte : firstSexteenByte)
+                {
+                    System.out.println("---->" + singleByte + " -----> " + String.format("%02X",singleByte));
                     hexHolder.append(String.format("%02X",singleByte));
+                }
             }
             else
             {
@@ -102,3 +105,11 @@ class Program {
         }
     }
 }
+
+
+/*
+ * %: Indicates that you're specifying a format for the following value.
+    0: This means the output should be padded with 0s if it has fewer than two characters.
+    2: This means the output should have a minimum width of 2 characters.
+    X: This converts the byte value into a hexadecimal representation in uppercase letters (i.e., A-F).
+ */
