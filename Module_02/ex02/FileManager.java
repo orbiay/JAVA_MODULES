@@ -22,7 +22,8 @@ class FileManager {
         File[] files = currentDirecory.toFile().listFiles();
         for (File file:files)
         {
-            System.out.println(file.getName() + " " + file.length() / 1000 + " KB");
+            if (file != null)
+                System.out.println(file.getName() + " " + file.length() / 1000 + " KB");
         }
     }
 
@@ -88,13 +89,13 @@ class FileManager {
                 if (sp.length == 2)
                     cdCommand(sp[1]);
                 else
-                    System.out.println("Sorry for that but this is not shell command line ;)");
+                    System.out.println("Sorry for that but this is not bash command line ;)");
                 break;
             case "mv":
                 if (sp.length == 3)
                     mvCommand(sp[1],sp[2]);
                 else
-                    System.out.println("Sorry for that but this is not shell command line ;)");
+                    System.out.println("Sorry for that but this is not bash command line ;)");
                 break;
             case "exit":
                 System.exit(0);
