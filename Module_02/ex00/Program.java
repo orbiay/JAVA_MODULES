@@ -45,7 +45,6 @@ class Program {
             {
                 for (byte singleByte : firstSexteenByte)
                 {
-                    System.out.println("---->" + singleByte + " -----> " + String.format("%02X",singleByte));
                     hexHolder.append(String.format("%02X",singleByte));
                 }
             }
