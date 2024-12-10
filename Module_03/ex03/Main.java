@@ -3,7 +3,6 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.io.*;
 class Main {
-    // public static final Object lock = new Object(); 
     public static Deque<String> deque = new ArrayDeque<String>();
     public static void readFromUrl(int numOfThreads)
     {
@@ -39,7 +38,7 @@ class Main {
             readFromUrl(numOfThreads);
         }catch(Exception e)
         {
-
+            System.err.println(e.getMessage());
         }
     }
 }
