@@ -28,7 +28,7 @@ class Main {
             int numOfThreads = Integer.parseInt(args[1].substring("--threadsCount=".length()));
             if (arrayLength < numOfThreads)
             {
-                System.out.println("Error: could u fix your data.");
+                System.out.println("Error: could u fix your input.");
                 return ;
             }
             capacity = arrayLength;
@@ -45,10 +45,7 @@ class Main {
                 else
                     thread = new ThreadMember(arrayLength,i* assignedSize);
                 thread.start();
-                // try{
                 thread.join();
-                // }catch(Exception e)
-                // {}
                 thread.defineYourSelf();
                 arrayLength -= assignedSize;
 
