@@ -31,8 +31,6 @@ class ThreadMember extends Thread {
                     if (Main.deque.size() > 0)
                     {
                         stringUrl = Main.deque.poll();
-                        System.out.println("------------>" + Main.deque.size());
-                        System.out.println("Worked File is " + stringUrl);
                         ++fileNumber;
                         FileOutputStream fileOutputStream = new FileOutputStream("file" + fileNumber + ".txt");
                         URL url = new URL(stringUrl);
@@ -51,7 +49,7 @@ class ThreadMember extends Thread {
             }
         }catch(Exception e)
         {
-
+            System.err.println(e.getMessage());
         }
     }
 }
