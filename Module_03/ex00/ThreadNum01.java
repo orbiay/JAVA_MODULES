@@ -7,7 +7,7 @@ class ThreadNum01 extends Thread {
     public void run()
     {
         int i = 0;
-        while (i < times)
+        while ( i < times)
         {
             System.out.println("Egg");
             i++;
