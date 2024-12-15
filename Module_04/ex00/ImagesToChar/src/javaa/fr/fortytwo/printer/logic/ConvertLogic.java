@@ -1,4 +1,4 @@
-package java.fr.fortytwo.printer.logic;
+package javaa.fr.fortytwo.printer.logic;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -28,7 +28,6 @@ public class ConvertLogic {
     public StringBuilder readAndFill()
     {
         try{
-            System.out.println("Here ->");
             BufferedImage image = ImageIO.read(new File(this.path));
             if (image.getWidth() > 16 || image.getWidth() < 16 || image.getHeight() > 16 || image.getHeight() < 16)
                 throw new ImageWidtheigthException("Error: Image Width Heigth Exception");
@@ -46,7 +45,7 @@ public class ConvertLogic {
             }
         }catch (Exception e)
         {
-            System.err.println(e.getMessage() + "***");
+            System.err.println(e.getMessage());
             System.exit(-1);
         }
         return res;
