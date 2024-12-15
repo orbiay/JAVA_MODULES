@@ -1,5 +1,6 @@
+package fr.fortytwo.printer.app;
 import java.util.Scanner;
-import javaa.fr.fortytwo.printer.logic.ConvertLogic;
+import fr.fortytwo.printer.logic.ConvertLogic;
 class Main {
     static public void main (String args[])
     {

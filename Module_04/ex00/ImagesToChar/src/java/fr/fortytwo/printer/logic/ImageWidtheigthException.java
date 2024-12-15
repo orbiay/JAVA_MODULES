@@ -1,4 +1,4 @@
-package javaa.fr.fortytwo.printer.logic;
+package fr.fortytwo.printer.logic;
 
 class ImageWidtheigthException extends RuntimeException {
     public ImageWidtheigthException(String message) {

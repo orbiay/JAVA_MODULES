@@ -1,4 +1,4 @@
-package javaa.fr.fortytwo.printer.logic;
+package fr.fortytwo.printer.logic;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
