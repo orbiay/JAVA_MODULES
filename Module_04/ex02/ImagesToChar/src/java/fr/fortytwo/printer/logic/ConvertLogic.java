@@ -5,8 +5,7 @@ import java.io.File;
 import java.io.InputStream;
 import com.diogonunes.jcolor.Ansi;
 import com.diogonunes.jcolor.Attribute;
-import com.diogonunes.jcolor.FColor;
-import com.diogonunes.jcolor.BColor;
+
 
 public class ConvertLogic {
     private StringBuilder res;
@@ -14,52 +13,6 @@ public class ConvertLogic {
     private String black;
     private InputStream input;
 
- public static FColor getForegroundColor(String colorName) {
-        switch (colorName.toUpperCase()) {
-            case "RED":
-                return FColor.RED;
-            case "GREEN":
-                return FColor.GREEN;
-            case "BLUE":
-                return FColor.BLUE;
-            case "YELLOW":
-                return FColor.YELLOW;
-            case "CYAN":
-                return FColor.CYAN;
-            case "MAGENTA":
-                return FColor.MAGENTA;
-            case "WHITE":
-                return FColor.WHITE;
-            case "BLACK":
-                return FColor.BLACK;
-            default:
-                return FColor.DEFAULT; // Default color if not found
-        }
-    }
-
-    // Method to convert string to BColor
-    public static BColor getBackgroundColor(String colorName) {
-        switch (colorName.toUpperCase()) {
-            case "RED":
-                return BColor.RED;
-            case "GREEN":
-                return BColor.GREEN;
-            case "BLUE":
-                return BColor.BLUE;
-            case "YELLOW":
-                return BColor.YELLOW;
-            case "CYAN":
-                return BColor.CYAN;
-            case "MAGENTA":
-                return BColor.MAGENTA;
-            case "WHITE":
-                return BColor.WHITE;
-            case "BLACK":
-                return BColor.BLACK;
-            default:
-                return BColor.DEFAULT; // Default color if not found
-        }
-    }
 
     public ConvertLogic(String white,String black , InputStream input)
     {
@@ -77,13 +30,27 @@ public class ConvertLogic {
 
         return luminance < 128;
     }
-
+    private Attribute getColorFromName(String colorName) {
+        switch (colorName.toUpperCase()) {
+            case "RED":
+                return Attribute.BACK_COLOR(255, 0, 0); // Red
+            case "GREEN":
+                return Attribute.BACK_COLOR(0, 255, 0); // Green
+            case "BLUE":
+                return Attribute.BACK_COLOR(0, 0, 255); // Blue
+            case "YELLOW":
+                return Attribute.BACK_COLOR(255, 255, 0); // Yellow
+            case "WHITE":
+                return Attribute.BACK_COLOR(255, 255, 255); // White
+            case "BLACK":
+                return Attribute.BACK_COLOR(0, 0, 0); // Black
+            default:
+                return Attribute.BACK_COLOR(128, 128, 128); // Default gray background
+        }
+    }
     public void readAndFill()
     {
-        String whiteText = Ansi.colorize(" ", Attribute.BACK_COLOR(Ansi.BColor.GREEN));
-        String blackText =Ansi.colorize(" ", Attribute.GREEN_TEXT());
-        FColor foreground = getForegroundColor(black);
-        BColor background = getBackgroundColor(white);
+        
         try{
             BufferedImage image = ImageIO.read(input);
             if (image.getWidth() > 16 || image.getWidth() < 16 || image.getHeight() > 16 || image.getHeight() < 16)
@@ -94,9 +61,10 @@ public class ConvertLogic {
                 {
                     int pixel = image.getRGB(x,y);
                     if(isBlack(pixel))
-                        System.out.print(Ansi.colorize(" ", Attribute.FOREGROUND_COLOR(foregroundColor)));
+                    
+                        System.out.print(Ansi.colorize(" ", getColorFromName(black)));
                     else
-                        System.out.print(Ansi.colorize(" ", Attribute.BACK_COLOR(backgroundColor)));
+                        System.out.print(Ansi.colorize(" ", getColorFromName(white)));
                 }
                 System.out.println();
             }
