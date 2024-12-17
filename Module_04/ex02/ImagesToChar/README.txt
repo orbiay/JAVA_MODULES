@@ -7,8 +7,7 @@ This project converts a BMP image into a character representation in the console
 
 ## Compile Instructions
 Run the following command:
-javac -d target -sourcepath src/java src/java/fr/fortytwo/printer/app/Main.java
-
+javac -cp lib/jcommander-2.0.jar:lib/JColor-5.0.0.jar -d target -sourcepath src/java src/java/fr/fortytwo/printer/app/Main.java
 
 ## Copy Resources to the Target Directory
 mkdir -p target/resources
@@ -21,4 +20,4 @@ jar cfm target/my-application.jar ./src/manifest.txt  -C target .
 jar cfm ./target/images-to-chars-printer.jar ./src/manifest.txt -C target .
 
 ## Running the JAR
-java -jar ./target/images-to-chars-printer.jar . 0 ./target/resources/it.bmp
+java -cp target/images-to-chars-printer.jar:lib/jcommander-2.0.jar:lib/JColor-5.0.0.jar fr.fortytwo.printer.app.Main --white= RED --black= GREEN
